@@ -103,29 +103,26 @@ The entire frontend interface is styled with **Tailwind CSS** and enhanced with 
 
 FinTrack follows a classic **three-tier architecture**, cleanly separating the presentation layer, business logic layer, and data layer:
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                  PRESENTATION LAYER                     │
-│         React SPA (Vite) — Port 5173                    │
-│   Pages: Dashboard · Transactions · Budgets · Search    │
-│   HTTP Client: Axios (with JWT Bearer Token injection)  │
-└───────────────────────┬─────────────────────────────────┘
-                        │ HTTPS / REST (JSON)
-                        ▼
-┌─────────────────────────────────────────────────────────┐
-│                  APPLICATION LAYER                      │
-│       Spring Boot 3.x REST API — Port 8080              │
-│   Security: Spring Security + JWT Filter Chain          │
-│   Business Logic: Service Layer (Transactional)         │
-│   Data Access: Spring Data JPA Repositories             │
-└───────────────────────┬─────────────────────────────────┘
-                        │ JPA / Hibernate (SQL)
-                        ▼
-┌─────────────────────────────────────────────────────────┐
-│                    DATA LAYER                           │
-│             MySQL 8.x — fintrack_db                     │
-│   Tables: users · transactions · budgets                │
-└─────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph client ["🖥️  React · Port 5173"]
+        UI["Dashboard / Pages\n─────────────────\nAxios + JWT Interceptor"]
+    end
+
+    subgraph server ["⚙️  Spring Boot · Port 8080"]
+        JWT["🔐 JWT Filter"]
+        API["📡 REST Controllers"]
+        SVC["🧩 Service Layer"]
+    end
+
+    subgraph data ["🗄️  MySQL · Port 3306"]
+        DB[("fintrack_db\n─────────────\nusers\ntransactions\nbudgets")]
+    end
+
+    UI -->|"Bearer JWT"| JWT
+    JWT -->|"Validated Request"| API
+    API -->|"Business Logic"| SVC
+    SVC -->|"JPA / Hibernate"| DB
 ```
 
 **Authentication Flow:**
