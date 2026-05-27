@@ -392,20 +392,6 @@ FinTrack's security architecture is designed around a **stateless, token-based a
 
 ---
 
-## 📸 Screenshots
-
-> *(Replace the placeholder sections below with actual application screenshots)*
-
-| Dashboard | Transactions |
-|---|---|
-| ![Dashboard](https://via.placeholder.com/480x300.png?text=Dashboard+View) | ![Transactions](https://via.placeholder.com/480x300.png?text=Transactions+View) |
-
-| Budget Management | Global Search |
-|---|---|
-| ![Budgets](https://via.placeholder.com/480x300.png?text=Budget+Management+View) | ![Search](https://via.placeholder.com/480x300.png?text=Search+View) |
-
----
-
 ## 🔮 Roadmap
 
 The following enhancements are planned for future development iterations:
@@ -448,7 +434,7 @@ Please ensure your code follows the existing conventions and that any new backen
 
 ## 📄 License
 
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for full details.
+This project is licensed under the **MIT License**.
 
 ---
 
